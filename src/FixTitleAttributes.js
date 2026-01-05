@@ -1,28 +1,31 @@
 /**
- * Try to make title attributes more accessible.
+ * Try to make title attributes more accessible, using Popover API.
+ *
  * @see https://codepen.io/nfreear/pen/JoXqver
  * @copyright ©Nick Freear.
  */
 export default class FixTitleAttributes {
-  #target = document;
-  #titleSelector = 'main [title], [role = main] [title]';
-  #focusableSelector = 'a[ href ], button, [ tabindex="0" ]';
-  #moreInfoText = 'More info on %s';
-  #visualLabel = '?';
-  #prefix = 'title-fix-';
+  #DEFAULTS = {
+    target: document,
+    titleSelector: '[title]',
+    focusableSelector: 'a[ href ], button, [ tabindex="0" ]',
+    moreInfoText: 'More info on %s',
+    visualLabel: '?',
+    prefix: 'title-fix-'
+  };
+
+  #opt = {};
   #elements = [];
   #filterInEl = [];
   #filterOutEl = [];
   #iframes = [];
 
-  constructor(titleSelector) {
-    if (titleSelector) { // Check validity?
-      this.#titleSelector = titleSelector;
-    }
+  constructor (options = {}) {
+    this.#opt = { ...this.#DEFAULTS, ...options };
   }
 
   run () {
-    this.#elements = this.#target.querySelectorAll(this.#titleSelector);
+    this.#elements = this.#opt.target.querySelectorAll(this.#opt.titleSelector);
 
     this.#filterInEl = [...this.#elements].filter(el => this.#filter(el));
 
@@ -33,7 +36,7 @@ export default class FixTitleAttributes {
 
   #filter (elem) {
     if (this.#isIframe(elem)) {
-      this.#iframes.push(elem)
+      this.#iframes.push(elem);
       return false;
     }
 
@@ -49,7 +52,7 @@ export default class FixTitleAttributes {
   #isIframe (el) { return (el.tagName === 'IFRAME'); }
 
   #isAncestorFocusable (el) {
-    const focusable = el.closest(this.#focusableSelector);
+    const focusable = el.closest(this.#opt.focusableSelector);
 
     if (focusable === el) { return false; }
 
@@ -58,22 +61,22 @@ export default class FixTitleAttributes {
   }
 
   #createPopover (el, idx) {
-    const id = `${this.#prefix}${idx}`;
-    const parentEl = el.parentElement;
+    const prefix = this.#opt.prefix;
+    const id = `${prefix}${idx}`;
     const buttonEl = document.createElement('button');
     const tipEl = document.createElement('div');
-    buttonEl.textContent = this.#visualLabel;
-    buttonEl.setAttribute('aria-label', this.#moreInfoText.replace('%s', el.textContent)); //`More info on ${el.textContent}`);
+    buttonEl.textContent = this.#opt.visualLabel;
+    buttonEl.setAttribute('aria-label', this.#opt.moreInfoText.replace('%s', el.textContent));
     buttonEl.setAttribute('popovertarget', id);
-    buttonEl.classList.add(`${this.#prefix}button`);
-    tipEl.classList.add(`${this.#prefix}tip`);
+    buttonEl.classList.add(`${prefix}button`);
+    tipEl.classList.add(`${prefix}tip`);
     tipEl.textContent = el.getAttribute('title');
     tipEl.id = id;
     tipEl.setAttribute('popover', '');
     el.after(buttonEl, tipEl);
-    // parentEl.appendChild(buttonEl);
-    // parentEl.appendChild(tipEl);
 
     el.setAttribute('aria-describedby', id);
+
+    return { buttonEl, tipEl };
   }
 }

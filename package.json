@@ -1,8 +1,18 @@
 {
+  "name": "fix-title-attr",
+  "version": "0.8.0",
+  "type": "module",
+  "exports": {
+    ".": "src/FixTitleAttributes.js"
+  },
   "devDependencies": {
+    "eslint": "^9.39.2",
+    "neostandard": "^0.12.2",
     "servor": "^4.0.2"
   },
   "scripts": {
-    "start": "npx servor"
+    "dry-run": "npm publish --dry-run",
+    "start": "npx servor",
+    "lint": "npx eslint ."
   }
 }
