@@ -1,0 +1,39 @@
+<!doctype html>
+
+<style>
+  iframe { height: 2rem; }
+</style>
+
+<main>
+<h1> Fix <code>title</code> attributes </h1>
+
+<ul>
+<li>
+  <a href="#" title="title on link">An example link with title</a>
+</li>
+<li>
+  <label>A field with title <input title="title on input field"></label>
+</li>
+<li>
+  <a href="#">Hello
+    <abbr title="Abbreviation within link.">abbr</abbr></a>
+</li>
+<li>
+  <abbr title="Abbrevation without focusable ancestor">abbr (2)</abbr>
+</li>
+<li>
+  <iframe title="title on iframe"></iframe>
+</li>
+
+</ul>
+
+</main>
+
+
+<script type="module">
+  import FixTitleAttributes from '../src/FixTitleAttributes.js';
+
+  const fix = new FixTitleAttributes();
+  fix.run();
+  console.debug('fix:', fix);
+</script>
