@@ -1,5 +1,5 @@
 /**
- * Try to make title attributes more accessible, using Popover API.
+ * Try to make HTML title attributes more accessible, using Popover API.
  *
  * @see https://codepen.io/nfreear/pen/JoXqver
  * @copyright ©Nick Freear.
@@ -19,6 +19,7 @@ export default class FixTitleAttributes {
   #filterInEl = [];
   #filterOutEl = [];
   #iframes = [];
+  #createdEl = [];
 
   constructor (options = {}) {
     this.#opt = { ...this.#DEFAULTS, ...options };
@@ -29,7 +30,7 @@ export default class FixTitleAttributes {
 
     this.#filterInEl = [...this.#elements].filter(el => this.#filter(el));
 
-    this.#filterInEl.forEach((el, idx) => this.#createPopover(el, idx));
+    this.#createdEl = this.#filterInEl.map((el, idx) => this.#createPopover(el, idx));
 
     // this.#filterOutEl.forEach(el) // @TODO: aria-describedby?
   }
@@ -60,23 +61,23 @@ export default class FixTitleAttributes {
     return focusable;
   }
 
-  #createPopover (el, idx) {
+  #createPopover (element, idx) {
     const prefix = this.#opt.prefix;
     const id = `${prefix}${idx}`;
-    const buttonEl = document.createElement('button');
-    const tipEl = document.createElement('div');
-    buttonEl.textContent = this.#opt.visualLabel;
-    buttonEl.setAttribute('aria-label', this.#opt.moreInfoText.replace('%s', el.textContent));
-    buttonEl.setAttribute('popovertarget', id);
-    buttonEl.classList.add(`${prefix}button`);
-    tipEl.classList.add(`${prefix}tip`);
-    tipEl.textContent = el.getAttribute('title');
-    tipEl.id = id;
-    tipEl.setAttribute('popover', '');
-    el.after(buttonEl, tipEl);
+    const button = document.createElement('button');
+    const tip = document.createElement('div');
+    button.textContent = this.#opt.visualLabel;
+    button.setAttribute('aria-label', this.#opt.moreInfoText.replace('%s', element.textContent));
+    button.setAttribute('popovertarget', id);
+    button.classList.add(`${prefix}button`);
+    tip.classList.add(`${prefix}tip`);
+    tip.textContent = element.getAttribute('title');
+    tip.id = id;
+    tip.setAttribute('popover', '');
+    element.after(button, tip);
 
-    el.setAttribute('aria-describedby', id);
+    element.setAttribute('aria-describedby', id);
 
-    return { buttonEl, tipEl };
+    return { button, tip };
   }
 }

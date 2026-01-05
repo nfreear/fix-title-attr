@@ -1,8 +1,9 @@
 <!doctype html>
+<html lang="en">
 
-<style>
-  iframe { height: 2rem; }
-</style>
+<title>Fix title attributes</title>
+
+<link rel="stylesheet" href="style.css">
 
 <main>
 <h1> Fix <code>title</code> attributes </h1>
@@ -30,12 +31,5 @@
 </main>
 
 
-<script type="module">
-  import FixTitleAttributes from '../src/FixTitleAttributes.js';
-
-  const fix = new FixTitleAttributes({
-    titleSelector: 'main [ title ]'
-  });
-  fix.run();
-  console.debug('fix:', fix);
-</script>
+<script type="module" src="app.js"></script>
+</html>

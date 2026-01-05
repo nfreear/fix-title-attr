@@ -14,5 +14,25 @@
     "dry-run": "npm publish --dry-run",
     "start": "npx servor",
     "lint": "npx eslint ."
-  }
+  },
+  "files": [
+    "demo",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nfreear/fix-title-attr.git"
+  },
+  "keywords": [
+    "accessibility",
+    "keyboard",
+    "touch",
+    "html",
+    "html-attribute",
+    "popover",
+    "popover-api"
+  ],
+  "description": "Make HTML title attributes more accessible, using the Popover API.",
+  "license": "MIT",
+  "author": "Nick Freear"
 }
