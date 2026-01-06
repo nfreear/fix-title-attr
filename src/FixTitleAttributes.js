@@ -1,3 +1,5 @@
+const { customElements } = window;
+
 /**
  * Try to make HTML title attributes more accessible, using Popover API.
  *
@@ -8,10 +10,11 @@ export default class FixTitleAttributes {
   #DEFAULTS = {
     target: document,
     titleSelector: '[title]',
-    focusableSelector: 'a[ href ], button, [ tabindex="0" ]',
+    focusableSelector: 'a[ href ], button, [ tabindex = "0" ]',
     moreInfoText: 'More info on %s',
-    visualLabel: '?',
-    prefix: 'title-fix-'
+    customElementName: 'title-tip',
+    visualLabel: '?', // Legacy.
+    prefix: 'fix-title-attr-'
   };
 
   #opt = {};
@@ -21,16 +24,25 @@ export default class FixTitleAttributes {
   #iframes = [];
   #createdEl = [];
 
+  get customElementName () { return this.#opt.customElementName; }
+
   constructor (options = {}) {
     this.#opt = { ...this.#DEFAULTS, ...options };
   }
 
+  defineElement (elementClass) {
+    customElements.define(this.customElementName, elementClass);
+  }
+
   run () {
+    console.assert(this.#opt.target, 'opt.target is missing');
+    console.assert(customElements.get(this.customElementName), 'custom element not defined');
+
     this.#elements = this.#opt.target.querySelectorAll(this.#opt.titleSelector);
 
     this.#filterInEl = [...this.#elements].filter(el => this.#filter(el));
 
-    this.#createdEl = this.#filterInEl.map((el, idx) => this.#createPopover(el, idx));
+    this.#createdEl = this.#filterInEl.map((el, idx) => this.#createCustomTip(el, idx));
 
     // this.#filterOutEl.forEach(el) // @TODO: aria-describedby?
   }
@@ -61,22 +73,40 @@ export default class FixTitleAttributes {
     return focusable;
   }
 
-  #createPopover (element, idx) {
+  #createCustomTip (element, idx) {
+    const tipElem = document.createElement(this.#opt.customElementName);
+    console.assert(typeof tipElem.buttonText === 'string', 'missing buttonText setter');
+
+    tipElem.buttonText = this.#opt.moreInfoText.replace('%s', element.textContent);
+    tipElem.dataset.tag = element.tagName.toLowerCase();
+    tipElem.dataset.idx = idx;
+    tipElem.textContent = element.title;
+    tipElem.id = this.#getId(idx);
+
+    element.setAttribute('aria-describedby', this.#getId(idx));
+
+    element.after(tipElem);
+
+    return tipElem;
+  }
+
+  #getId (idx) { return `${this.#opt.prefix}${idx}`; }
+
+  #createPopoverLegacy (element, idx) {
     const prefix = this.#opt.prefix;
-    const id = `${prefix}${idx}`;
     const button = document.createElement('button');
     const tip = document.createElement('div');
     button.textContent = this.#opt.visualLabel;
     button.setAttribute('aria-label', this.#opt.moreInfoText.replace('%s', element.textContent));
-    button.setAttribute('popovertarget', id);
+    button.setAttribute('popovertarget', this.#getId(idx));
     button.classList.add(`${prefix}button`);
     tip.classList.add(`${prefix}tip`);
     tip.textContent = element.getAttribute('title');
-    tip.id = id;
+    tip.id = this.#getId(idx);
     tip.setAttribute('popover', '');
     element.after(button, tip);
 
-    element.setAttribute('aria-describedby', id);
+    element.setAttribute('aria-describedby', this.#getId(idx));
 
     return { button, tip };
   }

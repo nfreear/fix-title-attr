@@ -31,19 +31,33 @@ For HTML like the following:
 ```
 
 Use JavaScript like this:
-```js
-import FixTitleAttributes from 'fix-title-attr';
 
-const fix = new FixTitleAttributes({
+```js
+import fixTitleAttributes from 'fix-title-attr';
+
+fixTitleAttributes({
   titleSelector: 'main [ title ]'
 });
-fix.run();
 ```
 
+You can vary the `titleSelector` option to suit your website. For example:
+
+```js
+fixTitleAttributes({
+  titleSelector: '#main [title], .full-page-2 [title]' // …
+});
+```
+
+## License
+
+* License: [MIT][]
+
+[mit]: https://nfreear.mit-license.org/#2026-
 [ci]: https://github.com/nfreear/fix-title-attr/actions/workflows/node.js.yml
 [ci-badge]: https://github.com/nfreear/fix-title-attr/actions/workflows/node.js.yml/badge.svg
 
 [popover api]: https://developer.mozilla.org/en-US/docs/Web/API/Popover_API
+[anchor positioning]: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning
 [dive into accessibility]: http://nfreear.github.io/diveintoaccessibility/
 [dia-repo]: https://github.com/nfreear/diveintoaccessibility
 

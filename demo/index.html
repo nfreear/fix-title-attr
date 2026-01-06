@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-demo-page="true">
 
 <title>Fix title attributes</title>
 
@@ -17,7 +17,7 @@
 </li>
 <li>
   <a href="#">Hello
-    <abbr title="Abbreviation within link.">abbr</abbr></a>
+    <abbr title="Abbreviation within focusable link.">abbr</abbr></a>
 </li>
 <li>
   <abbr title="Abbrevation without focusable ancestor">abbr (2)</abbr>
@@ -31,5 +31,14 @@
 </main>
 
 
+<script type="importmap">
+{
+  "imports": {
+    "fix-title-attr": "../index.js"
+  }
+}
+</script>
+
 <script type="module" src="app.js"></script>
+
 </html>

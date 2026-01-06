@@ -1,8 +1,17 @@
-import FixTitleAttributes from '../src/FixTitleAttributes.js';
+import fixTitleAttributes from 'fix-title-attr';
+
+fixTitleAttributes({
+  titleSelector: 'main [ title ]'
+});
+
+/*
+import { FixTitleAttributes, TitleTipElement } from 'fix-title-attr';
 
 const fix = new FixTitleAttributes({
   titleSelector: 'main [ title ]'
 });
+
+fix.defineElement(TitleTipElement);
 fix.run();
 
-console.debug('fix:', fix);
+console.debug('fix:', fix); */

@@ -1,17 +1,32 @@
 
-.title-fix-button {
+title-tip {
+  &::part(tip) {
+    border-radius: .25rem;
+    line-height: 1.3;
+    padding: .2rem .4rem;
+  }
+
+  &::part(button):after {
+    content: '?';
+  }
+}
+
+title-tip::part(button),
+.fix-title-attr-button {
   border-color: gray;
   border-radius: 50%;
   cursor: help;
   margin-left: .25rem;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.6rem;
+  width: 1.6rem;
 }
 
-iframe {
-  height: 2rem;
-}
+[ data-demo-page = true ] {
+  iframe {
+    height: 2rem;
+  }
 
-ul {
-  line-height: 2;
+  ul {
+    line-height: 2.2;
+  }
 }

@@ -3,7 +3,8 @@
   "version": "0.8.0",
   "type": "module",
   "exports": {
-    ".": "src/FixTitleAttributes.js"
+    ".": "index.js",
+    "./element": "src/TitleTipElement.js"
   },
   "devDependencies": {
     "eslint": "^9.39.2",
