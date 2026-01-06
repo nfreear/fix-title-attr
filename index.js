@@ -16,3 +16,19 @@ function fixTitleAttributes (options) {
 export { FixTitleAttributes, TitleTipElement };
 
 export default fixTitleAttributes;
+
+// ------------------------------------
+
+/**
+ * Auto-run option.
+ */
+
+if (/run=fix-title/.test(import.meta.url)) {
+  import('./src/importMapOpt.js').then(({ default: importMapOpt }) => {
+    const options = importMapOpt('fixTitleAttr');
+
+    console.debug('auto-run. Options:', options);
+
+    fixTitleAttributes(options);
+  });
+}

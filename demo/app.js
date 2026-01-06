@@ -1,8 +1,11 @@
+import 'auto-run:fix-title-attr';
+
+/*
 import fixTitleAttributes from 'fix-title-attr';
 
 fixTitleAttributes({
   titleSelector: 'main [ title ]'
-});
+}); */
 
 /*
 import { FixTitleAttributes, TitleTipElement } from 'fix-title-attr';
