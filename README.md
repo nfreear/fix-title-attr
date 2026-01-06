@@ -48,6 +48,14 @@ fixTitleAttributes({
 });
 ```
 
+And, you can adjust or translate the "`More info on %s`" phrase used by the library. Translating to French, for example:
+
+```js
+fixTitleAttributes({
+  moreInfoText: "Plus d'informations sur %s"
+});
+```
+
 ## License
 
 * License: [MIT][]

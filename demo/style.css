@@ -1,9 +1,15 @@
 
+:root {
+  /* 0.48rem for Verdana font. */
+  --fix-title-multiplier: 0.48rem;
+}
+
 title-tip {
   &::part(tip) {
     border-radius: .25rem;
     line-height: 1.3;
-    padding: .2rem .4rem;
+    padding: .2rem;
+    text-align: center;
   }
 
   &::part(button):after {
@@ -29,4 +35,10 @@ title-tip::part(button),
   ul {
     line-height: 2.2;
   }
+}
+
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  X_font-family: Arial, sans-serif;
+  X_font-family: 'Times New Roman', serif;
 }

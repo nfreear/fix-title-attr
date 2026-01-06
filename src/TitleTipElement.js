@@ -14,7 +14,9 @@ export default class TitleTipElement extends HTMLElement {
 
   get buttonText () { return this.#buttonText; }
 
-  get widthMultipler () { return 0.36; }
+  // Multiplier: 0.36 for Times New Roman; 0.42 for Arial; 0.48 for Verdana font.
+  get widthMultipler () { return 0.42; }
+
   get characterCount () { return this.textContent.length; }
 
   connectedCallback () {
@@ -66,7 +68,7 @@ export default class TitleTipElement extends HTMLElement {
   }
 
   [ popover ] {
-    width: calc(${this.characterCount} * ${this.widthMultipler}rem); /* = ${this.calculateWidthRem}rem */
+    width: calc(${this.characterCount} * var(--fix-title-multiplier, ${this.widthMultipler}rem)); /* = ${this.calculateWidthRem}rem */
 
     /* max-width: 13rem;
     min-width: 8rem; */
