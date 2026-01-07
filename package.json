@@ -4,7 +4,9 @@
   "type": "module",
   "exports": {
     ".": "index.js",
-    "./element": "src/TitleTipElement.js"
+    "./element": "src/TitleTipElement.js",
+    "./style.css": "src/style.css",
+    "./style": "src/style.css"
   },
   "devDependencies": {
     "eslint": "^9.39.2",
@@ -30,6 +32,7 @@
     "touch",
     "html",
     "html-attribute",
+    "anchor-position",
     "popover",
     "popover-api"
   ],
