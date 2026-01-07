@@ -1,33 +1,44 @@
 <!doctype html>
-<html lang="en" data-demo-page="true">
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Fix title attributes</title>
 
 <link rel="stylesheet" href="../src/style.css">
+<link rel="stylesheet" href="demo.css">
 
 <main>
-<h1> Fix <code>title</code> attributes </h1>
+  <h1> Fix <code>title</code> attributes </h1>
 
-<ul>
-<li>
-  <a href="#" title="title on link">An example link with title</a>
-</li>
-<li>
-  <label>A field with title <input title="title on input field"></label>
-</li>
-<li>
-  <a href="#">Hello
-    <abbr title="Abbreviation within focusable link.">abbr</abbr></a>
-</li>
-<li>
-  <abbr title="Abbrevation without focusable ancestor">abbr (2)</abbr>
-</li>
-<li>
-  <iframe title="title on iframe"></iframe>
-</li>
+  <p>A demonstration of the <a href="https://github.com/nfreear/fix-title-attr"
+    ><code>fix-title-attr</code></a> JavaScript library.
+  </p>
 
-</ul>
-
+  <ul>
+    <li>
+      <a href="#" title="title on link">An example link with title</a>
+    </li>
+    <li>
+      <label>A field with title <input title="title on input field"></label>
+    </li>
+    <li>
+      <a href="#">Hello
+        <abbr title="Abbreviation within focusable link.">abbr</abbr>
+      </a>
+    </li>
+    <li>
+      <button>
+        Button
+        <abbr title="Abbreviation within focusable button">abbr (2)</abbr>
+      </button>
+    <li>
+      <abbr title="Abbrevation without focusable ancestor">abbr (3)</abbr>
+    </li>
+    <li>
+      <iframe title="title on iframe"></iframe>
+    </li>
+  </ul>
 </main>
 
 

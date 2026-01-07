@@ -2,7 +2,7 @@
 
 # fix-title-attr #
 
-Try to make HTML `title` attributes more accessible, using the [Popover API][].
+Make HTML `title` attributes more accessible, using the [Popover API][] and CSS [anchor positioning][].
 
 Used in [Dive Into Accessibility][] archive ([repo][dia-repo]).
 
@@ -12,7 +12,7 @@ Suitable where you have legacy content.
 
 Using the `title` attribute in HTML can be thought of as an [anti-pattern][], as it actively excludes multiple groups of users, including keyboard users, mobile/ touch users, screen reader users (mostly) and so on.
 
-### Further reading:
+### Further reading
 
 * [Accessibility concerns - title - Mozilla Developer Network][title-mdn]
 * [Using the HTML title attribute – updated March 2020, by Steve Faulkner, TPGi][title-tpgi]
@@ -20,6 +20,19 @@ Using the `title` attribute in HTML can be thought of as an [anti-pattern][], as
 * [The Trials and Tribulations of the Title Attribute, by Scott O'Hara (2017)][title-24]
 
 ## Usage
+
+JavaScript and a CSS stylesheet are available via the [esm.sh][] [CDN][]:
+```html
+<link rel="stylesheet" href="https://esm.sh/gh/nfreear/fix-title-attr/style">
+
+<script type="importmap">
+{
+  "imports": {
+    "fix-title-attr": "https://esm.sh/gh/nfreear/fix-title-attr?raw"
+  }
+}
+</script>
+```
 
 For HTML like the following:
 ```html
@@ -48,7 +61,7 @@ fixTitleAttributes({
 });
 ```
 
-And, you can adjust or translate the "`More info on %s`" phrase used by the library. Translating to French, for example:
+And, you can adjust or translate the "`More info on %s`" phrase used by the library (`%s` is a placeholder). To translate to French, for example, do this:
 
 ```js
 fixTitleAttributes({
@@ -58,12 +71,14 @@ fixTitleAttributes({
 
 ## License
 
-* License: [MIT][]
+Released under an [MIT][] license.
 
 [mit]: https://nfreear.mit-license.org/#2026-
 [ci]: https://github.com/nfreear/fix-title-attr/actions/workflows/node.js.yml
 [ci-badge]: https://github.com/nfreear/fix-title-attr/actions/workflows/node.js.yml/badge.svg
 
+[cdn]: https://esm.sh/gh/nfreear/fix-title-attr?keep-names&raw
+[esm.sh]: https://esm.sh/
 [popover api]: https://developer.mozilla.org/en-US/docs/Web/API/Popover_API
 [anchor positioning]: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning
 [dive into accessibility]: http://nfreear.github.io/diveintoaccessibility/

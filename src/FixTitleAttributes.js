@@ -1,7 +1,7 @@
 const { customElements } = window;
 
 /**
- * Try to make HTML title attributes more accessible, using Popover API.
+ * Make HTML title attributes more accessible, using the Popover API.
  *
  * @see https://codepen.io/nfreear/pen/JoXqver
  * @copyright ©Nick Freear.

@@ -34,6 +34,7 @@ export default class TitleTipElement extends HTMLElement {
     const id = 'my-tip';
     const button = document.createElement('button');
     const tip = document.createElement('div');
+    const arrowEl = document.createElement('div');
     const slotEl = document.createElement('slot');
     const style = document.createElement('style');
 
@@ -46,6 +47,9 @@ export default class TitleTipElement extends HTMLElement {
     tip.setAttribute('part', 'tip');
     tip.setAttribute('popover', '');
     tip.appendChild(slotEl);
+    tip.appendChild(arrowEl)
+
+    arrowEl.setAttribute('part', 'arrow');
 
     style.textContent = this.#stylesheet;
 
@@ -57,10 +61,14 @@ export default class TitleTipElement extends HTMLElement {
   @supports (position-anchor: --my-name) {
     button {
       anchor-name: --my-tip;
+
+      &::after {
+        content: '?';
+      }
     }
 
     [ popover ] {
-      margin-top: 1px;
+      margin-bottom: 2px;
       position-anchor: --my-tip;
       position: fixed;
       position-area: top center;
@@ -68,7 +76,7 @@ export default class TitleTipElement extends HTMLElement {
   }
 
   [ popover ] {
-    width: calc(${this.characterCount} * var(--fix-title-multiplier, ${this.widthMultipler}rem)); /* = ${this.calculateWidthRem}rem */
+    width: calc(${this.characterCount} * var(--fix-title-width-multiplier, ${this.widthMultipler}rem)); /* = ${this.calculateWidthRem}rem */
 
     /* max-width: 13rem;
     min-width: 8rem; */

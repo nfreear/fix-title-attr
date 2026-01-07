@@ -4,10 +4,14 @@
   "type": "module",
   "exports": {
     ".": "index.js",
+    "./auto-run": "index.js?run=fix-title",
     "./element": "src/TitleTipElement.js",
     "./style.css": "src/style.css",
     "./style": "src/style.css"
   },
+  "sideEffects": [
+    "src/style.css"
+  ],
   "devDependencies": {
     "eslint": "^9.39.2",
     "neostandard": "^0.12.2",

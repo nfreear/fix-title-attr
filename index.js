@@ -23,7 +23,7 @@ export default fixTitleAttributes;
  * Auto-run option.
  */
 
-if (/run=fix-title/.test(import.meta.url)) {
+if (/run=(fix-title|true)/.test(import.meta.url)) {
   import('./src/importMapOpt.js').then(({ default: importMapOpt }) => {
     const options = importMapOpt('fixTitleAttr');
 

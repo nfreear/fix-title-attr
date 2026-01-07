@@ -1,0 +1,48 @@
+
+:root {
+  /* 0.48rem for Verdana font. */
+  --fix-title-width-multiplier: 0.48rem;
+  /* Font experiments. */
+  --demo-font: Verdana, Arial, Helvetica, sans-serif;
+  --X_demo-font: Arial, sans-serif;
+  --X_demo-font: 'Times New Roman', serif;
+}
+
+/* Selectively change some of the "?" to "i"!
+*/
+[ data-tag = input ] {
+  &::part(button)::after {
+    content: 'i';
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.03rem;
+  }
+}
+
+iframe {
+  height: 2rem;
+}
+
+ul {
+  line-height: 2.3;
+}
+
+button,
+input {
+  font-size: inherit;
+  padding: .25rem 1rem;
+}
+
+body {
+  background-color: #fcfcfc;
+  color: #333;
+  font-family: var(--demo-font);
+  line-height: 1.5;
+  margin: auto;
+  max-width: 34rem;
+  padding: 0 1rem;
+}
+
+* {
+  outline-offset: .25rem;
+  text-underline-offset: .15rem;
+}
