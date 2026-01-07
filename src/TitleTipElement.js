@@ -47,7 +47,7 @@ export default class TitleTipElement extends HTMLElement {
     tip.setAttribute('part', 'tip');
     tip.setAttribute('popover', '');
     tip.appendChild(slotEl);
-    tip.appendChild(arrowEl)
+    tip.appendChild(arrowEl);
 
     arrowEl.setAttribute('part', 'arrow');
 
