@@ -1,7 +1,8 @@
 {
   "name": "fix-title-attr",
-  "version": "0.9.0",
+  "version": "0.9.5",
   "type": "module",
+  "main": "index.js",
   "exports": {
     ".": "index.js",
     "./auto-run": "index.js?run=fix-title",
@@ -24,13 +25,17 @@
   },
   "files": [
     "demo",
-    "src"
+    "src",
+    "!*test*",
+    "!*BAK*",
+    "!404.html"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nfreear/fix-title-attr.git"
   },
   "keywords": [
+    "a11y",
     "accessibility",
     "keyboard",
     "touch",

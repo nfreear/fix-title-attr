@@ -1,4 +1,5 @@
-[![Lint][ci-badge]][ci]
+[![Deploy][ci-badge]][ci]
+[![NPM][npm-badge]][npm]
 
 # fix-title-attr #
 
@@ -76,8 +77,9 @@ Released under an [MIT][] license.
 [mit]: https://nfreear.mit-license.org/#2026-
 [ci]: https://github.com/nfreear/fix-title-attr/actions/workflows/node.js.yml
 [ci-badge]: https://github.com/nfreear/fix-title-attr/actions/workflows/node.js.yml/badge.svg
-
-[cdn]: https://esm.sh/gh/nfreear/fix-title-attr?keep-names&raw
+[npm]: https://www.npmjs.com/package/fix-title-attr
+[npm-badge]: https://img.shields.io/npm/v/fix-title-attr
+[cdn]: https://esm.sh/fix-title-attr?keep-names&raw
 [esm.sh]: https://esm.sh/
 [popover api]: https://developer.mozilla.org/en-US/docs/Web/API/Popover_API
 [anchor positioning]: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning

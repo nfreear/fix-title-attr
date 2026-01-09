@@ -1,2 +1,4 @@
+.npmignore
 *BAK*
+*test*
 node_modules
