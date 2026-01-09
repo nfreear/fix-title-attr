@@ -1,21 +1,33 @@
+---
+permalink: /404.html
+---
 <!doctype html>
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="/demo/demo.css">
+<base href="/fix-title-attr/">
+
+<link rel="stylesheet" href="./demo/demo.css">
 
 <title>Not found</title>
 
 <h1>Not found</h1>
 
-<p><a href="/demo/">Demo homepage</a></p>
+<p><a href="./demo/">Demo homepage</a></p>
 
 <script type="module">
-  if (location.pathname === '/') {
+  const baseUrl = document.querySelector('base').getAttribute('href');
+  console.debug('baseUrl:', baseUrl, location);
+
+  if (location.pathname === baseUrl) {
     console.debug('Redirecting');
-    location.replace('/demo/');
+    location.replace(`${baseUrl}/demo/`);
   }
 </script>
-
 </html>
+<!--
+  https://help.github.com/en/articles/creating-a-custom-404-page-for-your-github-pages-site
+  https://css-tricks.com/thispagedoesntexist
+  https://github.com/x-404-test
+-->
