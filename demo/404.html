@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-action="redirect">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -7,19 +7,39 @@
 
 <link rel="stylesheet" href="./demo/demo.css">
 
+<style>
+.only-404 {
+  opacity: 0;
+  transition: all 2s;
+}
+
+[ data-action = "404" ] .only-404 {
+  opacity: 1;
+}
+</style>
+
 <title>Not found</title>
 
-<h1>Not found</h1>
+<div class="only-404">
+  <h1>Not found</h1>
+  <p>Sorry, we can’t seem to find what you’re looking for.</p>
+</div>
 
 <p><a href="./demo/">Demo homepage</a></p>
 
 <script type="module">
   const baseUrl = document.querySelector('base').getAttribute('href');
+
   console.debug('baseUrl:', baseUrl, location);
 
   if (location.pathname === baseUrl) {
     console.debug('Redirecting');
-    location.replace(`${baseUrl}/demo/`);
+    location.replace(`${baseUrl}demo/`);
+  } else {
+    setTimeout(() => {
+      document.documentElement.dataset.action = '404';
+    },
+    250);
   }
 </script>
 </html>

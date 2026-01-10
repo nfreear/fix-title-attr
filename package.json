@@ -19,6 +19,8 @@
     "servor": "^4.0.2"
   },
   "scripts": {
+    "clean": "rm -rf node_modules package-lock.json eslint.config.js",
+    "move:404": "cp demo/404.html ./404.html",
     "dry-run": "npm publish --dry-run",
     "start": "npx servor",
     "lint": "npx eslint ."

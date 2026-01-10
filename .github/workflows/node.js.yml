@@ -36,8 +36,8 @@ jobs:
     - run: npm test --if-present
 
     # Prevent 'node_modules' etc. being deployed!
-    - run: rm -rf node_modules package-lock.json eslint.config.js
-    - run: cp demo/404.html ./404.html
+    - run: npm run clean
+    - run: npm run move:404
     - name: Setup Pages
       uses: actions/configure-pages@v5
     - name: Upload artifact
