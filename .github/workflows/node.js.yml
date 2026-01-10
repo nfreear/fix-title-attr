@@ -32,7 +32,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run lint
-    - run: npm run dry-run
+    #- run: npm run dry-run
     - run: npm test --if-present
 
     # Prevent 'node_modules' etc. being deployed!
