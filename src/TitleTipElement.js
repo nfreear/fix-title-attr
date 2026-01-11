@@ -1,4 +1,4 @@
-const { HTMLElement } = window;
+const { HTMLElement, getComputedStyle } = window;
 
 /**
  * Custom element to encapsulate trigger <button> and popover tooltip.
@@ -15,9 +15,14 @@ export default class TitleTipElement extends HTMLElement {
   get buttonText () { return this.#buttonText; }
 
   // Multiplier: 0.36 for Times New Roman; 0.42 for Arial; 0.48 for Verdana font.
-  get widthMultipler () { return 0.42; }
+  get #defaultWidthMultipler () { return 0.44; }
 
-  get characterCount () { return this.textContent.length; }
+  get #widthMultiplierProp () {
+    const style = getComputedStyle(this);
+    return style.getPropertyValue('--fix-title-width-multiplier');
+  }
+
+  get #characterCount () { return this.textContent.length; }
 
   connectedCallback () {
     const rootElem = this.attachShadow({ mode: 'open' });
@@ -27,7 +32,7 @@ export default class TitleTipElement extends HTMLElement {
     rootElem.appendChild(tip);
     rootElem.appendChild(style);
 
-    console.debug('<title-tip>', [this]);
+    // console.debug('<title-tip>', [this]);
   }
 
   #createElements () {
@@ -76,15 +81,12 @@ export default class TitleTipElement extends HTMLElement {
   }
 
   [ popover ] {
-    width: calc(${this.characterCount} * var(--fix-title-width-multiplier, ${this.widthMultipler}rem)); /* = ${this.calculateWidthRem}rem */
-
-    /* max-width: 13rem;
-    min-width: 8rem; */
+    width: calc(${this.#characterCount} * var(--fix-title-width-multiplier, ${this.#defaultWidthMultipler}rem)); /* = ${this.#calculateWidthRem}rem */
   }
     `;
   }
 
-  get calculateWidthRem () {
-    return this.characterCount * this.widthMultipler;
+  get #calculateWidthRem () {
+    return this.#characterCount * parseFloat(this.#widthMultiplierProp);
   }
 }

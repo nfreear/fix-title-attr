@@ -1,11 +1,14 @@
 
 :root {
-  /* 0.48rem for Verdana font. */
-  --fix-title-width-multiplier: 0.48rem;
   /* Font experiments. */
   --demo-font: Verdana, Arial, Helvetica, sans-serif;
   --X_demo-font: Arial, sans-serif;
   --X_demo-font: 'Times New Roman', serif;
+}
+
+title-tip {
+  --fix-title-width-multiplier: var(--tt-wide-multiplier);
+  --Y_fix-title-width-multiplier: var(--tt-narrow-multiplier);
 }
 
 /* Selectively change some of the "?" to "i"!
