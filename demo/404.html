@@ -8,19 +8,23 @@
 <link rel="stylesheet" href="./demo/demo.css">
 
 <style>
-.only-404 {
-  opacity: 0;
-  transition: all 2s;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-
-[ data-action = "404" ] .only-404 {
-  opacity: 1;
+.fade-in {
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: .5s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 </style>
 
 <title>Not found</title>
 
-<div class="only-404">
+<div class="only-404 fade-in">
   <h1>Not found</h1>
   <p>Sorry, we can’t seem to find what you’re looking for.</p>
 </div>

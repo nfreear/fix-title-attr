@@ -24,12 +24,12 @@ Using the `title` attribute in HTML can be thought of as an [anti-pattern][], as
 
 JavaScript and a CSS stylesheet are available via the [esm.sh][] [CDN][]:
 ```html
-<link rel="stylesheet" href="https://esm.sh/gh/nfreear/fix-title-attr/style">
+<link rel="stylesheet" href="https://esm.sh/fix-title-attr@0.9.5/style">
 
 <script type="importmap">
 {
   "imports": {
-    "fix-title-attr": "https://esm.sh/gh/nfreear/fix-title-attr?raw"
+    "fix-title-attr": "https://esm.sh/fix-title-attr@0.9.5?raw"
   }
 }
 </script>
@@ -39,6 +39,7 @@ For HTML like the following:
 ```html
 <main>
   <a href="…" title="I'm a title attribute">Hello</a>
+  …
   <abbr title="hypertext markup language">HTML</abbr>
   …
 </main>

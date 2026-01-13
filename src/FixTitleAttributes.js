@@ -78,6 +78,7 @@ export default class FixTitleAttributes {
     console.assert(typeof tipElem.buttonText === 'string', 'missing buttonText setter');
 
     tipElem.buttonText = this.#opt.moreInfoText.replace('%s', element.textContent);
+    tipElem.dataset.text = element.textContent;
     tipElem.dataset.tag = element.tagName.toLowerCase();
     tipElem.dataset.idx = idx;
     tipElem.textContent = element.title;
