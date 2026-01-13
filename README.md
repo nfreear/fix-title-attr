@@ -9,6 +9,8 @@ Used in [Dive Into Accessibility][] archive ([repo][dia-repo]).
 
 Suitable where you have legacy content.
 
+* Demo: [nfreear.github.io/fix-title-attr][ghp]
+
 ## Why?
 
 Using the `title` attribute in HTML can be thought of as an [anti-pattern][], as it actively excludes multiple groups of users, including keyboard users, mobile/ touch users, screen reader users (mostly) and so on.
@@ -75,6 +77,7 @@ fixTitleAttributes({
 
 Released under an [MIT][] license.
 
+[ghp]: https://nfreear.github.io/fix-title-attr/demo/
 [mit]: https://nfreear.mit-license.org/#2026-
 [ci]: https://github.com/nfreear/fix-title-attr/actions/workflows/node.js.yml
 [ci-badge]: https://github.com/nfreear/fix-title-attr/actions/workflows/node.js.yml/badge.svg
