@@ -22,7 +22,7 @@ export default class FixTitleAttributes {
   #filterInEl = [];
   #filterOutEl = [];
   #iframes = [];
-  #createdEl = [];
+  #createdElem = [];
 
   get customElementName () { return this.#opt.customElementName; }
 
@@ -42,7 +42,7 @@ export default class FixTitleAttributes {
 
     this.#filterInEl = [...this.#elements].filter(el => this.#filter(el));
 
-    this.#createdEl = this.#filterInEl.map((el, idx) => this.#createCustomTip(el, idx));
+    this.#createdElem = this.#filterInEl.map((el, idx) => this.#createCustomTip(el, idx));
 
     // this.#filterOutEl.forEach(el) // @TODO: aria-describedby?
   }

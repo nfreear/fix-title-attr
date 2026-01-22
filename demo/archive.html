@@ -17,6 +17,11 @@
       "https://web.archive.org/web/20101215130059/https://diveintomark.org/archives/2004/01/08/postels-law"
       >Postel's Law, by Mark Pilgrim</a>
     </li>
+    <li>
+      <a href=
+      "https://webarchive.nationalarchives.gov.uk/ukgwa/20100703000205/http://archive.cabinetoffice.gov.uk/e-government/resources/handbook/html/2-4.asp#2.4.4"
+      >Building in universal accessibility</a>
+    </li>
   </ul>
 </main>
 
@@ -26,8 +31,7 @@
   "imports": {
     "fix-title-attr": "../index.js",
     "fix-archive-links": "../src/fixArchiveLinks.js"
-  },
-  "fixTitleAttr": {}
+  }
 }
 </script>
 
@@ -36,7 +40,8 @@
 import { fixArchiveLinks, TitleTipElement } from 'fix-title-attr';
 // import fixArchiveLinks from 'fix-archive-links';
 
-const worker = fixArchiveLinks({}, TitleTipElement);
+const worker = fixArchiveLinks(TitleTipElement);
+
 console.debug('Archive:', worker);
 </script>
 

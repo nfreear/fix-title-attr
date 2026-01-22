@@ -9,10 +9,13 @@ const { HTMLElement, getComputedStyle } = window;
  */
 export default class TitleTipElement extends HTMLElement {
   #buttonText = 'More info';
+  #metaData;
 
   set buttonText (text) { this.#buttonText = text; }
-
   get buttonText () { return this.#buttonText; }
+
+  set metaData (data) { this.#metaData = data; }
+  get metaData () { return this.#metaData; }
 
   // Multiplier: 0.36 for Times New Roman; 0.42 for Arial; 0.48 for Verdana font.
   get #defaultWidthMultipler () { return 0.44; }
@@ -46,6 +49,7 @@ export default class TitleTipElement extends HTMLElement {
     button.setAttribute('part', 'button');
     button.setAttribute('aria-label', this.buttonText);
     button.setAttribute('popovertarget', id);
+    button.setAttribute('aria-describedby', id);
     button.textContent = ''; // Was: '?'
 
     tip.id = id;

@@ -21,6 +21,24 @@ title-tip {
   }
 }
 
+title-tip[ data-archive-id ] {
+  &::part(button)::after {
+    content: 'A';
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  &[ data-archive-id = na-gov-uk ] {
+    &::part(button) {
+      width: 2.2rem;
+    }
+
+    &::part(button)::after {
+      content: 'NA';
+      font-size: small;
+    }
+  }
+}
+
 iframe {
   height: 2rem;
 }

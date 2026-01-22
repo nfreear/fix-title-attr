@@ -12,8 +12,14 @@ export class FixArchiveLinks {
     moreInfoText: 'More info on %s',
     patterns: [
       {
-        pattern: /\/web.(archive.org)\/web\/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\//i,
+        id: 'archive-org',
+        pattern: /\/web.(archive.org)\/web\/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\/(http.+)/i,
         template: 'Page saved at Archive.org, on %s'
+      },
+      { // https://webarchive.nationalarchives.gov.uk/ukgwa/20100703000205/http://archive.cabinetoffice.gov.uk/e-government/resources/handbook/html/2-4.asp#2.4.4
+        id: 'na-gov-uk',
+        pattern: /\/(webarchive.nationalarchives.gov.uk)\/\w+\/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\/(http.+)/i,
+        template: 'Page saved at UK National Archive, on %s'
       }
     ]
   };
@@ -21,7 +27,7 @@ export class FixArchiveLinks {
   #opt = {};
   #patterns = [];
   #elements = [];
-  #createdEl = [];
+  #createdElem = [];
   #metaData = [];
 
   get customElementName () { return this.#opt.customElementName; }
@@ -42,23 +48,23 @@ export class FixArchiveLinks {
 
     this.#elements = this.#opt.target.querySelectorAll(this.#opt.linkSelector);
 
-    this.#createdEl = [...this.#elements].map((el, idx) => this.#tryCreateTip(el, idx));
+    this.#createdElem = [...this.#elements].map((el, idx) => this.#tryCreateTip(el, idx));
   }
 
   #tryCreateTip (element, idx) {
     const { href } = element;
     let tipElem;
 
-    this.#patterns.forEach(({ pattern, template }) => {
+    this.#patterns.forEach(({ pattern, template, id }) => {
       const M = href.match(pattern);
       if (M) {
-        const data = this.#getRegexData(M);
+        const data = this.#getRegexData(M, id);
         const text = template.replace('%s', data.date);
-        console.debug('Link:', text, href);
 
         tipElem = this.#createArchiveTip(element, text, idx);
-        tipElem.dataset.archiveHost = data.host;
-        tipElem.dataset.archiveDate = data.iso;
+        tipElem.dataset.archiveId = id;
+        tipElem.dataset.archiveDate = data.dateIso;
+        tipElem.metaData = data;
 
         this.#metaData.push(data);
       }
@@ -74,17 +80,17 @@ export class FixArchiveLinks {
     tipElem.buttonText = this.#moreInfoText.replace('%s', element.textContent);
     tipElem.dataset.text = element.textContent;
     tipElem.dataset.tag = element.tagName.toLowerCase();
-    tipElem.dataset.archiveIdx = idx;
+    tipElem.dataset.archiveIndex = idx;
     tipElem.textContent = text;
-    // tipElem.id = this.#getId(idx);
 
     element.after(tipElem);
 
     return tipElem;
   }
 
-  #getRegexData (M) {
+  #getRegexData (M, _id) {
     const D = {
+      _id,
       host: M[1],
       year: M[2],
       month: M[3],
@@ -92,19 +98,22 @@ export class FixArchiveLinks {
       hour: M[5],
       minute: M[6],
       second: M[7],
+      url: M[8],
+      urlObj: null,
       dateObj: null,
       date: null,
-      iso: null
+      dateIso: null
     };
-    D.iso = `${D.year}-${D.month}-${D.day}T${D.hour}:${D.minute}:${D.second}Z`;
-    const unix = Date.parse(D.iso);
-    D.dateObj = new Date(unix);
-    D.date = D.dateObj.toString().replace(/\(Greenwich [\w ]+\)/, '');
+    D.dateIso = `${D.year}-${D.month}-${D.day}T${D.hour}:${D.minute}:${D.second}Z`;
+    const unixTS = Date.parse(D.dateIso);
+    D.dateObj = new Date(unixTS);
+    D.date = D.dateObj.toString().replace(/\((Greenwich|British) [\w ]+\)/, '');
+    D.urlObj = new URL(D.url);
     return D;
   }
 }
 
-export function fixArchiveLinks (options = {}, elementClass) {
+export function fixArchiveLinks (elementClass, options = {}) {
   const worker = new FixArchiveLinks(options);
 
   worker.defineElement(elementClass);
