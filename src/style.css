@@ -22,6 +22,7 @@ title-tip {
     border-radius: 50%;
     color: var(--tt-text-color);
     cursor: help;
+    font-family: var(--tt-button-font);
     margin-left: .15rem;
     outline-offset: .2rem;
     height: var(--tt-button-size);

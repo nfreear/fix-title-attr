@@ -7,33 +7,34 @@
 }
 
 title-tip {
-  --fix-title-width-multiplier: var(--tt-wide-multiplier);
-  --Y_fix-title-width-multiplier: var(--tt-narrow-multiplier);
+  --tt-tip-width-multiplier: var(--tt-wide-multiplier);
+  --Y_tt-tip-width-multiplier: var(--tt-narrow-multiplier);
 }
 
 /* Selectively change some of the "?" to "i"!
 */
 [ data-tag = input ] {
+  --tt-button-content: 'i';
+  --tt-button-font: Georgia, 'Times New Roman', serif;
+  --tt-position-area: bottom right;
+
   &::part(button)::after {
-    content: 'i';
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.03rem;
   }
 }
 
 title-tip[ data-archive-id ] {
-  &::part(button)::after {
-    content: 'A';
-    font-family: Georgia, 'Times New Roman', serif;
-  }
+  --tt-button-content: 'A';
+  --tt-button-font: Georgia, 'Times New Roman', serif;
 
   &[ data-archive-id = na-gov-uk ] {
+    --button-content: 'NA';
+
     &::part(button) {
       width: 2.2rem;
     }
 
     &::part(button)::after {
-      content: 'NA';
       font-size: small;
     }
   }
@@ -51,6 +52,12 @@ button,
 input {
   font-size: inherit;
   padding: .25rem 1rem;
+}
+
+footer {
+  font-size: small;
+  border-top: 1px solid gray;
+  margin-top: 2rem;
 }
 
 body {

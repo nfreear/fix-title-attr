@@ -86,6 +86,7 @@ export class FixArchiveLinks {
     tipElem.textContent = text;
 
     element.after(tipElem);
+    element.dataset.archiveTip = true;
 
     return tipElem;
   }

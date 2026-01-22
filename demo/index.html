@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../src/style.css">
 <link rel="stylesheet" href="demo.css">
 
-<main>
+<main id="main-content">
   <h1> Fix <code>title</code> attributes </h1>
 
   <p>A demonstration of the <a href="https://github.com/nfreear/fix-title-attr"
@@ -44,6 +44,13 @@
   </ul>
 </main>
 
+<footer>
+  <p>Source:
+    <a href="https://github.com/nfreear/fix-title-attr" title="on GitHub"
+    >@nfreear / fix-title-attr</a> on GitHub.
+  </p>
+</footer>
+
 
 <script type="importmap">
 {
@@ -52,7 +59,7 @@
     "auto-run:fix-title-attr": "../index.js?run=fix-title"
   },
   "fixTitleAttr": {
-    "titleSelector": "main [title]"
+    "titleSelector": "#main-content [title]"
   }
 }
 </script>

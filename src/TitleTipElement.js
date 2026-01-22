@@ -22,7 +22,7 @@ export default class TitleTipElement extends HTMLElement {
 
   get #widthMultiplierProp () {
     const style = getComputedStyle(this);
-    return style.getPropertyValue('--fix-title-width-multiplier');
+    return style.getPropertyValue('--tt-tip-width-multiplier');
   }
 
   get #characterCount () { return this.textContent.length; }
@@ -72,7 +72,7 @@ export default class TitleTipElement extends HTMLElement {
       anchor-name: --my-tip;
 
       &::after {
-        content: '?';
+        content: var(--tt-button-content, '?');
       }
     }
 
@@ -80,12 +80,17 @@ export default class TitleTipElement extends HTMLElement {
       margin-bottom: 2px;
       position-anchor: --my-tip;
       position: fixed;
-      position-area: top center;
+      position-area: var(--tt-position-area, top center);
     }
   }
 
+  :host {
+    --characters: ${this.#characterCount};
+  }
+
   [ popover ] {
-    width: calc(${this.#characterCount} * var(--fix-title-width-multiplier, ${this.#defaultWidthMultipler}rem)); /* = ${this.#calculateWidthRem}rem */
+    width: calc(var(--characters) * var(--fix-title-width-multiplier, ${this.#defaultWidthMultipler}rem));
+    width: calc(var(--characters) * var(--tt-tip-width-multiplier)); /* = ${this.#calculateWidthRem}rem */
   }
     `;
   }

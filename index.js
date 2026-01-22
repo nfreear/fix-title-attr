@@ -2,12 +2,14 @@ import FixTitleAttributes from './src/FixTitleAttributes.js';
 import TitleTipElement from './src/TitleTipElement.js';
 import { fixArchiveLinks, FixArchiveLinks } from './src/FixArchiveLinks.js';
 
-function fixTitleAttributes (options) {
-  const fix = new FixTitleAttributes({
-    titleSelector: 'main [ title ]'
-  });
+function fixTitleAttributes (elementClass, options = {}) {
+  options = { ...{ titleSelector: 'main [ title ]' }, ...options };
 
-  fix.defineElement(TitleTipElement);
+  const fix = new FixTitleAttributes(options);
+
+  if (elementClass) {
+    fix.defineElement(elementClass);
+  }
   const result = fix.run();
 
   console.debug('fix-title-attr:', fix);
@@ -15,7 +17,8 @@ function fixTitleAttributes (options) {
 }
 
 export {
-  FixTitleAttributes, TitleTipElement, FixArchiveLinks, fixArchiveLinks
+  FixTitleAttributes, TitleTipElement, fixTitleAttributes,
+  FixArchiveLinks, fixArchiveLinks
 };
 
 export default fixTitleAttributes;
@@ -32,6 +35,6 @@ if (/run=(fix-title|true)/.test(import.meta.url)) {
 
     console.debug('auto-run. Options:', options);
 
-    fixTitleAttributes(options);
+    fixTitleAttributes(TitleTipElement, options);
   });
 }
