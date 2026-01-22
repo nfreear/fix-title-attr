@@ -28,7 +28,7 @@ title-tip[ data-archive-id ] {
   --tt-button-font: Georgia, 'Times New Roman', serif;
 
   &[ data-archive-id = na-gov-uk ] {
-    --button-content: 'NA';
+    --tt-button-content: 'NA';
 
     &::part(button) {
       width: 2.2rem;

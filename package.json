@@ -45,7 +45,9 @@
     "html-attribute",
     "anchor-position",
     "popover",
-    "popover-api"
+    "popover-api",
+    "archive",
+    "wayback"
   ],
   "description": "Make HTML title attributes more accessible, using the Popover API.",
   "license": "MIT",

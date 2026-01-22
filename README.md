@@ -26,12 +26,12 @@ Using the `title` attribute in HTML can be thought of as an [anti-pattern][], as
 
 JavaScript and a CSS stylesheet are available via the [esm.sh][] [CDN][]:
 ```html
-<link rel="stylesheet" href="https://esm.sh/fix-title-attr@0.9.5/style">
+<link rel="stylesheet" href="https://esm.sh/fix-title-attr@0.9.6/style">
 
 <script type="importmap">
 {
   "imports": {
-    "fix-title-attr": "https://esm.sh/fix-title-attr@0.9.5?raw"
+    "fix-title-attr": "https://esm.sh/fix-title-attr@0.9.6?raw"
   }
 }
 </script>
@@ -73,6 +73,18 @@ fixTitleAttributes({
 });
 ```
 
+## Archive links
+
+You can also insert `<title-tip>` elements for [Wayback Machine][arch] links:
+
+```html
+<a href="https://web.archive.org/web/20101215130059/https://diveintomark.org/ …">Postel's Law</a>
+```
+
+```js
+fixArchiveLinks();
+```
+
 ## License
 
 Released under an [MIT][] license.
@@ -96,3 +108,4 @@ Released under an [MIT][] license.
 [title-inc]: https://inclusive-components.design/tooltips-toggletips/
 [title-24]: https://www.24a11y.com/2017/the-trials-and-tribulations-of-the-title-attribute/
 [anti-pattern]: https://en.wikipedia.org/wiki/Anti-pattern
+[arch]: https://web.archive.org/
