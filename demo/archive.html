@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Archive links demo</title>
+
+<link rel="stylesheet" href="../src/style.css">
+<link rel="stylesheet" href="demo.css">
+
+<main>
+  <h1>Archive links demo</h1>
+
+  <ul>
+    <li>
+      <a href=
+      "https://web.archive.org/web/20101215130059/https://diveintomark.org/archives/2004/01/08/postels-law"
+      >Postel's Law, by Mark Pilgrim</a>
+    </li>
+  </ul>
+</main>
+
+
+<script type="importmap">
+{
+  "imports": {
+    "fix-title-attr": "../index.js",
+    "fix-archive-links": "../src/fixArchiveLinks.js"
+  },
+  "fixTitleAttr": {}
+}
+</script>
+
+
+<script type="module">
+import { fixArchiveLinks, TitleTipElement } from 'fix-title-attr';
+// import fixArchiveLinks from 'fix-archive-links';
+
+const worker = fixArchiveLinks({}, TitleTipElement);
+console.debug('Archive:', worker);
+</script>
+
+</html>

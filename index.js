@@ -1,5 +1,6 @@
 import FixTitleAttributes from './src/FixTitleAttributes.js';
 import TitleTipElement from './src/TitleTipElement.js';
+import { fixArchiveLinks, FixArchiveLinks } from './src/fixArchiveLinks.js';
 
 function fixTitleAttributes (options) {
   const fix = new FixTitleAttributes({
@@ -13,7 +14,9 @@ function fixTitleAttributes (options) {
   return result;
 }
 
-export { FixTitleAttributes, TitleTipElement };
+export {
+  FixTitleAttributes, TitleTipElement, FixArchiveLinks, fixArchiveLinks
+};
 
 export default fixTitleAttributes;
 
