@@ -1,6 +1,7 @@
 const { customElements } = window;
 
 /**
+ * Create a `<title-tip>` for Archive.org links, containing meta-data.
  *
  * @see https://codepen.io/nfreear/pen/VYjWOYO,
  */
@@ -49,6 +50,7 @@ export class FixArchiveLinks {
     this.#elements = this.#opt.target.querySelectorAll(this.#opt.linkSelector);
 
     this.#createdElem = [...this.#elements].map((el, idx) => this.#tryCreateTip(el, idx));
+    return this;
   }
 
   #tryCreateTip (element, idx) {
@@ -116,10 +118,10 @@ export class FixArchiveLinks {
 export function fixArchiveLinks (elementClass, options = {}) {
   const worker = new FixArchiveLinks(options);
 
-  worker.defineElement(elementClass);
-  worker.run();
-
-  return worker;
+  if (elementClass) {
+    worker.defineElement(elementClass);
+  }
+  return worker.run();
 }
 
 export default fixArchiveLinks;

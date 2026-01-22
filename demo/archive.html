@@ -29,8 +29,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fix-title-attr": "../index.js",
-    "fix-archive-links": "../src/fixArchiveLinks.js"
+    "fix-title-attr": "../index.js"
   }
 }
 </script>
@@ -38,11 +37,10 @@
 
 <script type="module">
 import { fixArchiveLinks, TitleTipElement } from 'fix-title-attr';
-// import fixArchiveLinks from 'fix-archive-links';
 
-const worker = fixArchiveLinks(TitleTipElement);
+const result = fixArchiveLinks(TitleTipElement);
 
-console.debug('Archive:', worker);
+console.debug('Archive links:', result);
 </script>
 
 </html>
